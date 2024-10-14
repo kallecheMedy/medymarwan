@@ -86,20 +86,28 @@
         <div class="footer-wrapper"></div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script>
-        // Mot de passe en clair pour les tests (à éviter dans un environnement de production)
-        const correctPasswordHash = "5f4dcc3b5aa765d61d8327deb882cf99" // Hash MD5 de "password"
-        
+        let correctPasswordHash;
+
+        // Charger le mot de passe depuis le fichier JSON
+        fetch('config.json')
+            .then(response => response.json())
+            .then(data => {
+                correctPasswordHash = data.adminPasswordHash;
+                // Affiche le formulaire de connexion
+                document.getElementById("loginContainer").style.display = "block";
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement du fichier JSON:', error);
+            });
+
         // Fonction pour calculer le hash MD5 (simple démonstration)
         function md5(string) {
-            // Utilisation d'une bibliothèque comme CryptoJS pour le hash
             return CryptoJS.MD5(string).toString();
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            // Affiche le formulaire de connexion
-            document.getElementById("loginContainer").style.display = "block";
-
             // Gestion de la soumission du formulaire
             document.getElementById("loginForm").addEventListener("submit", function(event) {
                 event.preventDefault(); // Empêche l'envoi normal du formulaire
@@ -117,8 +125,5 @@
             });
         });
     </script>
-
-    <!-- Ajoutez la bibliothèque CryptoJS pour le hashing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </body>
 </html>
