@@ -1,7 +1,20 @@
-<html><head>
-    <link href=/resources/labheader/css/academyLabHeader.css rel=stylesheet>
-        <link href=/resources/css/labsEcommerce.css rel=stylesheet>
-    <title>Unprotected admin functionality</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/resources/labheader/css/academyLabHeader.css" rel="stylesheet">
+    <link href="/resources/css/labsEcommerce.css" rel="stylesheet">
+    <title>Protected Admin Functionality</title>
+    <style>
+        /* Style pour le formulaire de connexion */
+        .login-container {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <script src="/resources/labheader/js/labHeader.js"></script>
@@ -9,27 +22,27 @@
         <section class="academyLabBanner">
             <div class="container">
                 <div class="logo"></div>
-                    <div class="title-container">
-                        <h2>Unprotected admin functionality</h2>
-                        <a class="link-back" href="https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality">
-                            Back&nbsp;to&nbsp;lab&nbsp;description&nbsp;
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 28 30" enable-background="new 0 0 28 30" xml:space="preserve" title="back-arrow">
-                                <g>
-                                    <polygon points="1.4,0 0,1.2 12.6,15 0,28.8 1.4,30 15.1,15"></polygon>
-                                    <polygon points="14.3,0 12.9,1.2 25.6,15 12.9,28.8 14.3,30 28,15"></polygon>
-                                </g>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="widgetcontainer-lab-status is-notsolved">
-                        <span>LAB</span>
-                        <p>Not solved</p>
-                        <span class="lab-status-icon"></span>
-                    </div>
+                <div class="title-container">
+                    <h2>Unprotected admin functionality</h2>
+                    <a class="link-back" href="https://portswigger.net/web-security/access-control/lab-unprotected-admin-functionality">
+                        Back&nbsp;to&nbsp;lab&nbsp;description&nbsp;
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 28 30" enable-background="new 0 0 28 30" xml:space="preserve" title="back-arrow">
+                            <g>
+                                <polygon points="1.4,0 0,1.2 12.6,15 0,28.8 1.4,30 15.1,15"></polygon>
+                                <polygon points="14.3,0 12.9,1.2 25.6,15 12.9,28.8 14.3,30 28,15"></polygon>
+                            </g>
+                        </svg>
+                    </a>
                 </div>
-            </section></div>
-        
-    
+                <div class="widgetcontainer-lab-status is-notsolved">
+                    <span>LAB</span>
+                    <p>Not solved</p>
+                    <span class="lab-status-icon"></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <div theme="">
         <section class="maincontainer">
             <div class="container is-page">
@@ -39,26 +52,73 @@
                         <a href="/login.html">My account</a><p>|</p>
                     </section>
                 </header>
-                <header class="notification-header">
-                </header>
-                <section>
-                    <h1>Users</h1>
-                    <div>
-                        <span>wiener - </span>
-                        <a href="/administrator-panel/delete?username=wiener">Delete</a>
-                    </div>
-                    <div>
-                        <span>carlos - </span>
-                        <a href="/administrator-panel/delete?username=carlos">Delete</a>
-                    </div>
-                </section>
-                <br>
-                <hr>
+                <header class="notification-header"></header>
+
+                <!-- Formulaire de connexion -->
+                <div class="login-container" id="loginContainer">
+                    <h1>Login</h1>
+                    <form id="loginForm">
+                        <label for="password">Password</label>
+                        <input required type="password" id="password" name="password" autofocus>
+                        <button class="button" type="submit">Log in</button>
+                    </form>
+                    <div id="loginError" style="color:red; display:none;">Invalid password!</div>
+                </div>
+
+                <!-- Contenu du panneau d'administration -->
+                <div id="adminContent" class="hidden">
+                    <section>
+                        <h1>Users</h1>
+                        <div>
+                            <span>wiener - </span>
+                            <a href="/administrator-panel/delete?username=wiener">Delete</a>
+                        </div>
+                        <div>
+                            <span>carlos - </span>
+                            <a href="/administrator-panel/delete?username=carlos">Delete</a>
+                        </div>
+                    </section>
+                    <br>
+                    <hr>
+                </div>
             </div>
         </section>
-        <div class="footer-wrapper">
-        </div>
+        <div class="footer-wrapper"></div>
     </div>
 
+    <script>
+        // Mot de passe en clair pour les tests (à éviter dans un environnement de production)
+        const correctPasswordHash = "5f4dcc3b5aa765d61d8327deb882cf99" // Hash MD5 de "password"
+        
+        // Fonction pour calculer le hash MD5 (simple démonstration)
+        function md5(string) {
+            // Utilisation d'une bibliothèque comme CryptoJS pour le hash
+            return CryptoJS.MD5(string).toString();
+        }
 
-</body></html>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Affiche le formulaire de connexion
+            document.getElementById("loginContainer").style.display = "block";
+
+            // Gestion de la soumission du formulaire
+            document.getElementById("loginForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Empêche l'envoi normal du formulaire
+                const password = document.getElementById("password").value;
+
+                // Vérification du mot de passe
+                if (md5(password) === correctPasswordHash) {
+                    // Masquer le formulaire et afficher le contenu d'administration
+                    document.getElementById("loginContainer").style.display = "none";
+                    document.getElementById("adminContent").classList.remove("hidden");
+                } else {
+                    // Affiche un message d'erreur
+                    document.getElementById("loginError").style.display = "block";
+                }
+            });
+        });
+    </script>
+
+    <!-- Ajoutez la bibliothèque CryptoJS pour le hashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+</body>
+</html>

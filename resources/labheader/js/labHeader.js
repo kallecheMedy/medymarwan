@@ -50,5 +50,5 @@ function animateLabHeader() {
 
     }, 500);
 
-    document.querySelector("body > div:nth-child(3) > section > div > section > div:nth-child(3) > a")
+    
 }
