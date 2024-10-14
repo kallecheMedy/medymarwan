@@ -1,69 +1,196 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href=/resources/labheader/css/academyLabHeader.css rel=stylesheet>
-        <link href=/resources/css/labsEcommerce.css rel=stylesheet>
-        <title>File path traversal, simple case</title>
-    </head>
-    <body>
-        <script src="/resources/labheader/js/labHeader.js"></script>
-        <div id="academyLabHeader">
-            <section class='academyLabBanner'>
-                <div class=container>
-                    <div class=logo></div>
-                        <div class=title-container>
-                            <h2>File path traversal, simple case</h2>
-                            <a class=link-back href='https://portswigger.net/web-security/file-path-traversal/lab-simple'>
-                                Back&nbsp;to&nbsp;lab&nbsp;description&nbsp;
-                                <svg version=1.1 id=Layer_1 xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x=0px y=0px viewBox='0 0 28 30' enable-background='new 0 0 28 30' xml:space=preserve title=back-arrow>
-                                    <g>
-                                        <polygon points='1.4,0 0,1.2 12.6,15 0,28.8 1.4,30 15.1,15'></polygon>
-                                        <polygon points='14.3,0 12.9,1.2 25.6,15 12.9,28.8 14.3,30 28,15'></polygon>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class='widgetcontainer-lab-status is-notsolved'>
-                            <span>LAB</span>
-                            <p>Not solved</p>
-                            <span class=lab-status-icon></span>
-                        </div>
+<html><head>
+    <link href="/resources/labheader/css/academyLabHeader.css" rel="stylesheet">
+    <link href="/resources/css/labsEcommerce.css" rel="stylesheet">
+    <title>User ID controlled by request parameter with password disclosure</title>
+</head>
+<body>
+    <script src="/resources/labheader/js/labHeader.js"></script>
+    <div id="academyLabHeader">
+        <section class="academyLabBanner">
+            <div class="container">
+                <div class="logo"></div>
+                    <div class="title-container">
+                        <h2>User ID controlled by request parameter with password disclosure</h2>
+                        <a class="link-back" href="https://portswigger.net/web-security/access-control/lab-user-id-controlled-by-request-parameter-with-password-disclosure">
+                            Back&nbsp;to&nbsp;lab&nbsp;description&nbsp;
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 28 30" enable-background="new 0 0 28 30" xml:space="preserve" title="back-arrow">
+                                <g>
+                                    <polygon points="1.4,0 0,1.2 12.6,15 0,28.8 1.4,30 15.1,15"></polygon>
+                                    <polygon points="14.3,0 12.9,1.2 25.6,15 12.9,28.8 14.3,30 28,15"></polygon>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="widgetcontainer-lab-status is-notsolved">
+                        <span>LAB</span>
+                        <p>Not solved</p>
+                        <span class="lab-status-icon"></span>
                     </div>
                 </div>
-            </section>
-        </div>
-        <div theme="ecommerce">
-            <section class="maincontainer">
-                <div class="container">
-                    <header class="navigation-header">
-                        <section class="top-links">
-                            <a href=/>Home</a><p>|</p>
-                            <a href="/login.html">My account</a>
-                            <p>|</p>
-                        </section>
-                    </header>
-                    <header class="notification-header">
-                    </header>
-                    <section class="container-list-tiles">
-                        <div>
-                            <img src="img3.jpg">
-                            <h3>Eye Projectors</h3>
-                            $6.94
-                            <a class="button" href="/product?productId=1">View details</a>
-                        </div>
-                        <div>
-                            <img src="img4.jpg">
-                            <h3>Conversation Controlling Lemon</h3>
-                            $73.25
-                            <a class="button" href="/product?productId=2">View details</a>
-                        </div>
-
-                       
+            </section></div>
+        
+    
+    <div theme="ecommerce">
+        <section class="maincontainer">
+            <div class="container">
+                <header class="navigation-header">
+                    <section class="top-links">
+                        <a href="/">Home</a><p>|</p>
+                        <a href="/login.html">My account</a><p>|</p>
                     </section>
-                </div>
-            </section>
-            <div class="footer-wrapper">
+                </header>
+                <header class="notification-header">
+                </header>
+                <section class="ecoms-pageheader">
+                    <img src="shop.svg">
+                </section>
+                <section class="container-list-tiles">
+                    <div>
+                        <img src="17.jpg">
+                        <h3>Picture Box</h3>
+                        <img src="/resources/images/rating4.png">
+                        $60.00
+                        <a class="button" href="/product?productId=1">View details</a>
+                    </div>
+                    <div>
+                        <img src="63.jpg">
+                        <h3>Laser Tag</h3>
+                        <img src="/resources/images/rating5.png">
+                        $10.08
+                        <a class="button" href="/product?productId=2">View details</a>
+                    </div>
+                    <div>
+                        <img src="10.jpg">
+                        <h3>Giant Grasshopper</h3>
+                        <img src="/resources/images/rating1.png">
+                        $21.50
+                        <a class="button" href="/product?productId=3">View details</a>
+                    </div>
+                    <div>
+                        <img src="3.jpg">
+                        <h3>Balance Beams</h3>
+                        <img src="/resources/images/rating4.png">
+                        $37.40
+                        <a class="button" href="/product?productId=4">View details</a>
+                    </div>
+                    <div>
+                        <img src="72.jpg">
+                        <h3>Baby Minding Shoes</h3>
+                        <img src="/resources/images/rating2.png">
+                        $51.63
+                        <a class="button" href="/product?productId=5">View details</a>
+                    </div>
+                    <div>
+                        <img src="70.jpg">
+                        <h3>Eye Projectors</h3>
+                        <img src="/resources/images/rating5.png">
+                        $74.23
+                        <a class="button" href="/product?productId=6">View details</a>
+                    </div>
+                    <div>
+                        <img src="19.jpg">
+                        <h3>Potato Theater</h3>
+                        <img src="/resources/images/rating2.png">
+                        $89.20
+                        <a class="button" href="/product?productId=7">View details</a>
+                    </div>
+                    <div>
+                        <img src="42.jpg">
+                        <h3>Pest Control Umbrella</h3>
+                        <img src="/resources/images/rating4.png">
+                        $6.65
+                        <a class="button" href="/product?productId=8">View details</a>
+                    </div>
+                    <div>
+                        <img src="26.jpg">
+                        <h3>The Splash</h3>
+                        <img src="/resources/images/rating1.png">
+                        $95.18
+                        <a class="button" href="/product?productId=9">View details</a>
+                    </div>
+                    <div>
+                        <img src="27.jpg">
+                        <h3>The Trolley-ON</h3>
+                        <img src="/resources/images/rating5.png">
+                        $96.92
+                        <a class="button" href="/product?productId=10">View details</a>
+                    </div>
+                    <div>
+                        <img src="75.jpg">
+                        <h3>Grow Your Own Spy Kit</h3>
+                        <img src="/resources/images/rating4.png">
+                        $92.02
+                        <a class="button" href="/product?productId=11">View details</a>
+                    </div>
+                    <div>
+                        <img src="33.jpg">
+                        <h3>AbZorba Ball</h3>
+                        <img src="/resources/images/rating3.png">
+                        $70.11
+                        <a class="button" href="/product?productId=12">View details</a>
+                    </div>
+                    <div>
+                        <img src="25.jpg">
+                        <h3>The Lazy Dog</h3>
+                        <img src="/resources/images/rating3.png">
+                        $71.80
+                        <a class="button" href="/product?productId=13">View details</a>
+                    </div>
+                    <div>
+                        <img src="14.jpg">
+                        <h3>Mood Enhancer</h3>
+                        <img src="/resources/images/rating2.png">
+                        $56.57
+                        <a class="button" href="/product?productId=14">View details</a>
+                    </div>
+                    <div>
+                        <img src="28.jpg">
+                        <h3>Vintage Neck Defender</h3>
+                        <img src="/resources/images/rating2.png">
+                        $99.99
+                        <a class="button" href="/product?productId=15">View details</a>
+                    </div>
+                    <div>
+                        <img src="47.jpg">
+                        <h3>3D Voice Assistants</h3>
+                        <img src="/resources/images/rating3.png">
+                        $97.71
+                        <a class="button" href="/product?productId=16">View details</a>
+                    </div>
+                    <div>
+                        <img src="39.jpg">
+                        <h3>Paintball Gun - Thunder Striker</h3>
+                        <img src="/resources/images/rating5.png">
+                        $63.81
+                        <a class="button" href="/product?productId=17">View details</a>
+                    </div>
+                    <div>
+                        <img src="56.jpg">
+                        <h3>More Than Just Birdsong</h3>
+                        <img src="/resources/images/rating4.png">
+                        $54.61
+                        <a class="button" href="/product?productId=18">View details</a>
+                    </div>
+                    <div>
+                        <img src="59.jpg">
+                        <h3>Inflatable Holiday Home</h3>
+                        <img src="/resources/images/rating3.png">
+                        $30.97
+                        <a class="button" href="/product?productId=19">View details</a>
+                    </div>
+                    <div>
+                        <img src="66.jpg">
+                        <h3>Paddling Pool Shoes</h3>
+                        <img src="/resources/images/rating2.png">
+                        $91.30
+                        <a class="button" href="/product?productId=20">View details</a>
+                    </div>
+                </section>
             </div>
+        </section>
+        <div class="footer-wrapper">
         </div>
-    </body>
-</html>
+    </div>
+
+
+</body></html>
