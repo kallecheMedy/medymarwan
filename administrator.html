@@ -36,7 +36,8 @@
                 <header class="navigation-header">
                     <section class="top-links">
                         <a href="/">Home</a><p>|</p>
-                        <a href="/my-account?id=wiener">My account</a><p>|</p>
+                        <a href="/admin">Admin panel</a><p>|</p>
+                        <a href="/my-account?id=administrator">My account</a><p>|</p>
                         <a href="/logout">Log out</a><p>|</p>
                     </section>
                 </header>
@@ -44,18 +45,18 @@
                 </header>
                 <h1>My Account</h1>
                 <div id="account-content">
-                    <p>Your username is: wiener</p>
+                    <p>Your username is: administrator</p>
                     <form class="login-form" name="change-email-form" action="/my-account/change-email" method="POST">
                         <label>Email</label>
                         <input required="" type="email" name="email" value="">
-                        <input required="" type="hidden" name="csrf" value="rHzc6CzcchT5TeGdiFOZ7HIazzrCaw0o">
+                        <input required="" type="hidden" name="csrf" value="4qaOnaCnbpgXoPtMYfNMlPipwkZNuCLQ">
                         <button class="button" type="submit"> Update email </button>
                     </form>
                     <form class="login-form" action="/my-account/change-password" method="POST">
                         <br>
                         <label>Password</label>
-                        <input required="" type="hidden" name="csrf" value="rHzc6CzcchT5TeGdiFOZ7HIazzrCaw0o">
-                        <input required="" type="password" name="password" value="peter">
+                        <input required="" type="hidden" name="csrf" value="4qaOnaCnbpgXoPtMYfNMlPipwkZNuCLQ">
+                        <input required="" type="password" name="password" value="wavashv38mantx3k1heq">
                         <button class="button" type="submit"> Update password </button>
                     </form>
                 </div>

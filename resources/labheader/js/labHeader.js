@@ -49,6 +49,4 @@ function animateLabHeader() {
         }
 
     }, 500);
-
-    
 }
